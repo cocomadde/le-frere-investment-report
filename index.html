@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>レ・フレール (Le Frere) 収益物件 投資分析レポート | 相模原市南区東林間</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-dark: #0f172a;
+      --primary-light: #3b82f6;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --warning: #ea580c;
+      --warning-bg: #fff7ed;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --surface: #ffffff;
+      --bg: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Top Navigation Header */
+    header.top-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4rem;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+    .badge-report {
+      background: var(--primary-light);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      border: 1px solid transparent;
+    }
+    .btn-outline {
+      border-color: var(--border);
+      background: #fff;
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background: var(--bg);
+      border-color: var(--text-muted);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #fff;
+      padding: 3.5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .hero h1 {
+      font-size: 2.35rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* KPI Grid */
+    .kpi-container {
+      margin-top: -2.5rem;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 2.5rem;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .kpi-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+    .kpi-card.highlight {
+      border-left: 4px solid var(--primary-light);
+    }
+    .kpi-card.alert {
+      border-left: 4px solid var(--danger);
+    }
+    .kpi-card.warning {
+      border-left: 4px solid var(--warning);
+    }
+    .kpi-card.success {
+      border-left: 4px solid var(--success);
+    }
+
+    /* Alert Banner Section */
+    .alert-banners {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+    .alert-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 0.5rem;
+      border: 1px solid;
+    }
+    .alert-banner.danger {
+      background-color: var(--danger-bg);
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+    .alert-banner.warning {
+      background-color: var(--warning-bg);
+      border-color: #fed7aa;
+      color: #9a3412;
+    }
+    .alert-banner.success {
+      background-color: var(--success-bg);
+      border-color: #86efac;
+      color: #166534;
+    }
+    .alert-icon {
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+    .alert-content h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .alert-content p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Content Cards / Sections */
+    .section-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      margin-bottom: 1.25rem;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+    table.data-table th, table.data-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    table.data-table th {
+      background: #f1f5f9;
+      color: var(--text-main);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    table.data-table tr:hover {
+      background: #f8fafc;
+    }
+    table.data-table td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    table.data-table tr.total-row {
+      background: #f1f5f9;
+      font-weight: 700;
+      border-top: 2px solid #cbd5e1;
+    }
+
+    /* Badge Pills */
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-primary { background: #dbeafe; color: #1e40af; }
+    .badge-success { background: #dcfce7; color: #166534; }
+    .badge-danger { background: #fee2e2; color: #991b1b; }
+    .badge-warning { background: #ffedd5; color: #9a3412; }
+
+    /* Timeline Section for HOME'S Archive */
+    .timeline {
+      position: relative;
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+      margin-left: 1rem;
+      margin-top: 1.5rem;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -1.95rem;
+      top: 0.25rem;
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 2px solid #fff;
+    }
+    .timeline-date {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-content {
+      font-size: 0.875rem;
+      color: var(--text-main);
+    }
+
+    /* Scorecard */
+    .scorecard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .score-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+    }
+    .score-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .score-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .score-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .score-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 2.5rem 0;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e293b;
+      margin-top: 3rem;
+    }
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    /* Print Optimization */
+    @media print {
+      header.top-nav, .nav-actions, footer.site-footer { display: none; }
+      body { background: #fff; color: #000; font-size: 10pt; }
+      .section-block { border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; margin-bottom: 1rem; padding: 1rem; }
+      .kpi-container { margin-top: 0; }
+      .hero { background: #1e3a8a; color: #fff; padding: 1.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <header class="top-nav">
+    <div class="container nav-inner">
+      <div class="nav-brand">
+        <span>🏢 投資分析レポート</span>
+        <span class="badge-report">Foresta Hills Standard</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-outline" onclick="window.print()">🖨️ PDF保存 / 印刷</button>
+        <a href="https://www.homes.co.jp/archive/b-38223678/" target="_blank" class="btn btn-primary">🔗 HOME'S アーカイブ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">📍 神奈川県相模原市南区東林間2丁目22-8</div>
+      <h1>レ・フレール (Le Frere) 1棟売マンション</h1>
+      <p class="hero-subtitle">
+        小田急相模原駅 徒歩9分 × 築13年 鉄骨造3階建 × 全12戸（1K×10戸、2LDK×1戸、3LDK×1戸）。<br>
+        大通り公道6m接道・標高86.9m相模原台地上の優良インカム物件に対する機関投資家水準の定量的デューデリジェンス。
+      </p>
+      <div class="hero-badges">
+        <span class="hero-badge">物件価格: 1億8,300万円 (税込)</span>
+        <span class="hero-badge">満室想定利回り: 6.66%</span>
+        <span class="hero-badge">土地面積: 99.82坪 (所有権)</span>
+        <span class="hero-badge">都市ガス完備 (東京ガス)</span>
+        <span class="hero-badge">エレベーター無 (修繕費削減)</span>
+        <span class="hero-badge">洪水・土砂 浸水区域外 (標高86.9m)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI Cards -->
+  <div class="container kpi-container">
+    <div class="kpi-grid">
+      <div class="kpi-card highlight">
+        <div class="kpi-label">物件売出価格</div>
+        <div class="kpi-value">18,300<span style="font-size:1rem;">万円</span></div>
+        <div class="kpi-sub">税込 / 現状有姿渡し</div>
+      </div>
+      <div class="kpi-card highlight">
+        <div class="kpi-label">満室想定年収入</div>
+        <div class="kpi-value">1,218.0<span style="font-size:1rem;">万円</span></div>
+        <div class="kpi-sub">満室想定表面利回り 6.66%</div>
+      </div>
+      <div class="kpi-card success">
+        <div class="kpi-label">純営業収益 (NOI)</div>
+        <div class="kpi-value">913.2<span style="font-size:1rem;">万円</span></div>
+        <div class="kpi-sub">実質 Cap Rate 4.99%</div>
+      </div>
+      <div class="kpi-card warning">
+        <div class="kpi-label">実質年間経費 (OPEX)</div>
+        <div class="kpi-value">304.8<span style="font-size:1rem;">万円</span></div>
+        <div class="kpi-sub">実質経費率: 25.02%</div>
+      </div>
+      <div class="kpi-card alert">
+        <div class="kpi-label">DSCR (返済余裕率)</div>
+        <div class="kpi-value">1.12<span style="font-size:1rem;">倍</span></div>
+        <div class="kpi-sub">目安1.20倍下回り (警戒)</div>
+      </div>
+      <div class="kpi-card alert">
+        <div class="kpi-label">損益分岐稼働率</div>
+        <div class="kpi-value">92.2<span style="font-size:1rem;">%</span></div>
+        <div class="kpi-sub">許容空室: わずか 0.93戸</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Critical Alerts -->
+    <div class="alert-banners">
+      <div class="alert-banner danger">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>【最優先注意】サブリース契約中（手取賃料乖離リスク）</h4>
+          <p>開示されている年収1,218万円はエンドテナント満室賃料です。現行サブリース業者による保証率（80〜85%想定）適用時の手取り年収は<strong>974万〜1,035万円（表面利回り5.32〜5.66%）</strong>に低下し、返済後CFが即座に枯渇します。<strong>決済と同時の無償中途解約と通常PMへの切替確約が買付の絶対条件</strong>です。</p>
+        </div>
+      </div>
+      <div class="alert-banner warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>【手残り脆弱性】損益分岐稼働率92.2%（1戸空室で単年度赤字転落）</h4>
+          <p>LTV 85%（期間25年、金利2.3%）借入時、ADS（年間元利返済額）は818.7万円。満室時の税引前CFは年94.5万円（月約7.9万円）にとどまり、全12戸中<strong>わずか1戸が空室になるだけで（稼働率91.7%）年間CFがマイナス（逆ザヤ）</strong>へ転落します。</p>
+        </div>
+      </div>
+      <div class="alert-banner warning">
+        <div class="alert-icon">📌</div>
+        <div class="alert-content">
+          <h4>【売買特約必須】売主駐車場2区画継続使用 ＆ J:COM・セコム必須承継</h4>
+          <p>売主が敷地内駐車場2台を継続使用予定。無償占有を防ぐため「引渡後、月額22,000円（@1.1万円×2台）の正規有償賃貸借契約の締結」を契約特約に明記必須。またJ:COMおよびセコムセキュリティのリース料（月約5万円）が固定経費として発生します。</p>
+        </div>
+      </div>
+      <div class="alert-banner success">
+        <div class="alert-icon">🛡️</div>
+        <div class="alert-content">
+          <h4>【最高水準の防災力】相模原台地（標高約86.9m）平坦地・浸水リスク皆無</h4>
+          <p>低地河川沿い（標高2〜3m）の物件と異なり、相模原台地（標高86.9m）の関東ローム層上に位置。相模原市防災ハザードマップにおける<strong>洪水浸水想定区域および土砂災害警戒区域の完全対象外</strong>であり、資産防衛力が極めて優れています。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: 決算書デザイン型判定 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">📊 決算書デザイン型判定 (法人合算着地予想)</div>
+        <span class="badge badge-primary">モアビズ4期基準</span>
+      </div>
+      <p class="section-desc">
+        ユーザー標準の「モアビズ4期決算書（Col Gベースライン）」数値を基準とし、本物件をLTV 85%、金利2.3%、期間25年、建物割合38%（税務耐用年数15年）で新規取得した場合の財務インパクトを精緻にシミュレーション。
+      </p>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>財務指標項目</th>
+              <th style="text-align:right;">検証対象 不動産単品</th>
+              <th style="text-align:right;">モアビズ4期現在 (基準値)</th>
+              <th style="text-align:right; background:#e0e7ff; color:#1e3a8a;">買入後 決算書着地予想</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. 帳簿上税引前当期純利益</strong></td>
+              <td class="num">¥4,969,266</td>
+              <td class="num">¥3,722,450</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">¥8,691,716</td>
+            </tr>
+            <tr>
+              <td><strong>2. 税引前手残りCF</strong></td>
+              <td class="num">¥1,069,684</td>
+              <td class="num">¥1,741,901</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">¥2,811,585</td>
+            </tr>
+            <tr>
+              <td>　・税引前CF利回り</td>
+              <td class="num">0.58%</td>
+              <td class="num">0.65%</td>
+              <td class="num" style="background:#e0e7ff;">0.62%</td>
+            </tr>
+            <tr>
+              <td>　・推定法人税額 (実効25%)</td>
+              <td class="num">¥1,242,317</td>
+              <td class="num">¥930,613</td>
+              <td class="num" style="background:#e0e7ff;">¥2,172,929</td>
+            </tr>
+            <tr>
+              <td>　・税引後手残りCF</td>
+              <td class="num" style="color:var(--danger);">¥-172,633</td>
+              <td class="num">¥811,289</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">¥638,656</td>
+            </tr>
+            <tr>
+              <td>　・税引後CF利回り</td>
+              <td class="num" style="color:var(--danger);">-0.09%</td>
+              <td class="num">0.30%</td>
+              <td class="num" style="background:#e0e7ff;">0.14%</td>
+            </tr>
+            <tr>
+              <td><strong>3. 債務償還年数 (年)</strong></td>
+              <td class="num">23.3年</td>
+              <td class="num">24.1年</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">23.8年</td>
+            </tr>
+            <tr>
+              <td><strong>4. 簡易 Cash Flow (=税引後CF)</strong></td>
+              <td class="num" style="color:var(--danger);">¥-172,633</td>
+              <td class="num">¥811,289</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">¥638,656</td>
+            </tr>
+            <tr>
+              <td><strong>5. ICR (利息補償倍率)</strong></td>
+              <td class="num">1.8倍</td>
+              <td class="num">0.9倍</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">1.2倍</td>
+            </tr>
+            <tr>
+              <td><strong>6. 負債返済割合 (DSCR)</strong></td>
+              <td class="num">1.4倍</td>
+              <td class="num">1.5倍</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">1.5倍</td>
+            </tr>
+            <tr>
+              <td><strong>7. LTV (固定資産税評価額基準)</strong></td>
+              <td class="num">328.48%</td>
+              <td class="num">261.08%</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">283.95%</td>
+            </tr>
+            <tr>
+              <td><strong>8. 投資額ROI (初期自己資金対比)</strong></td>
+              <td class="num">2.66%</td>
+              <td class="num">3.83%</td>
+              <td class="num" style="background:#e0e7ff; font-weight:700;">3.28%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); background:#f8fafc; padding:0.75rem; border-radius:0.375rem;">
+        ※ 帳簿上純利益は法人合算で年約869万円に大幅拡大しますが、単品の税引後手残りCFは元利返済と法人税負担によりマイナス17.2万円となります。後述の「指値（1.7億円以下）」を通すことで、税引後CFも大幅黒字化を達成できます。
+      </p>
+    </div>
+
+    <!-- Section 2: 物件概要 & 容積率 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">📐 物件概要 & 土地潜在力（未消化容積率）</div>
+        <span class="badge badge-success">公道6.0m接道</span>
+      </div>
+      <div class="table-responsive">
+        <table class="data-table">
+          <tbody>
+            <tr>
+              <th style="width:20%;">所在地</th>
+              <td>神奈川県相模原市南区東林間2丁目22番8号</td>
+              <th style="width:20%;">交通</th>
+              <td>小田急小田原線「小田急相模原」駅 徒歩9分 / 江ノ島線「東林間」駅 徒歩16分</td>
+            </tr>
+            <tr>
+              <th>土地面積</th>
+              <td>公簿 330.00㎡（99.82坪） / 実測 326.62㎡（H25現況求積図、-3.38㎡）</td>
+              <th>接道状況</th>
+              <td>南東側 公道 幅員約6.0m、接道間口 約16.2m（セットバック不要）</td>
+            </tr>
+            <tr>
+              <th>建物構造</th>
+              <td>鉄骨造合金メッキ鋼板ぶき3階建（エレベーター無）</td>
+              <th>新築時期</th>
+              <td>平成25年（2013年）9月新築（築13年）</td>
+            </tr>
+            <tr>
+              <th>延床面積</th>
+              <td>391.26㎡（1階: 130.42㎡ / 2階: 130.42㎡ / 3階: 130.42㎡）</td>
+              <th>総戸数・構成</th>
+              <td>全12戸（1K×10戸、2LDK×1戸、3LDK×1戸 ＋ 駐車場有）</td>
+            </tr>
+            <tr>
+              <th>用途地域</th>
+              <td>市街化区域 / 第1種中高層住居専用地域</td>
+              <th>建蔽率 / 容積率</th>
+              <td>指定: 60% / 200%（準防火地域、日影規制 3h-2h/4m）</td>
+            </tr>
+            <tr>
+              <th>主要設備</th>
+              <td>東京ガス（都市ガス）、公営水道、公共下水、J:COM、セコムセキュリティ</td>
+              <th>権利形態</th>
+              <td>所有権（私道負担なし）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="font-size:1rem; font-weight:700; margin:1.5rem 0 0.75rem;">【建蔽率・容積率の消化状況】</h4>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th style="text-align:right;">法定上限基準</th>
+              <th style="text-align:right;">設計実績値 (公簿330㎡基準)</th>
+              <th style="text-align:right;">消化率</th>
+              <th>土地価値および将来潜在力評価</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>建築面積 (1F)</strong></td>
+              <td class="num">198.00㎡ (60.0%)</td>
+              <td class="num">130.42㎡</td>
+              <td class="num"><strong>39.52%</strong></td>
+              <td>建蔽率に20.48%pの余裕。敷地内に十分な駐車場・駐輪スペースを確保。</td>
+            </tr>
+            <tr>
+              <td><strong>延べ床面積 (容積)</strong></td>
+              <td class="num">660.00㎡ (200.0%)</td>
+              <td class="num">391.26㎡</td>
+              <td class="num"><strong>59.28%</strong></td>
+              <td><span class="badge badge-success">未消化容積率 140.7%p</span> 将来建替時に最大18〜20戸へ増築可能な高い潜在価値。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 3: レントロール詳細フォレンジック -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">📋 収益状況・全12戸レントロール詳細分析</div>
+        <span class="badge badge-primary">HOME'Sデータ突合</span>
+      </div>
+      <p class="section-desc">
+        LIFULL HOME'S 過去募集アーカイブ（b-38223678）の実績データおよび現況賃料を完全照合。専有26.08㎡の1Kは平均DOM（募集日数）34日と素早い客付け力を発揮。
+      </p>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>号室</th>
+              <th>階</th>
+              <th>タイプ</th>
+              <th>専有面積</th>
+              <th>現況</th>
+              <th style="text-align:right;">賃料</th>
+              <th style="text-align:right;">共益費</th>
+              <th style="text-align:right;">月額合計</th>
+              <th style="text-align:right;">㎡単価</th>
+              <th>推定募集期間 (DOM)</th>
+              <th>備考・入居者属性</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>101</strong></td>
+              <td>1F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥68,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥70,000</strong></td>
+              <td class="num">¥2,684</td>
+              <td>約35〜45日（中央値38日）</td>
+              <td>南西向、テラス調専用庭感</td>
+            </tr>
+            <tr>
+              <td><strong>102</strong></td>
+              <td>1F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥67,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥69,000</strong></td>
+              <td class="num">¥2,646</td>
+              <td>約35〜45日（中央値40日）</td>
+              <td>長期入居者（退去時賃上げ余地）</td>
+            </tr>
+            <tr>
+              <td><strong>103</strong></td>
+              <td>1F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥68,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥70,000</strong></td>
+              <td class="num">¥2,684</td>
+              <td>約30〜40日（中央値35日）</td>
+              <td>単身社会人、独立洗面台</td>
+            </tr>
+            <tr>
+              <td><strong>104</strong></td>
+              <td>1F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥68,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥70,000</strong></td>
+              <td class="num">¥2,684</td>
+              <td>約30〜40日（中央値35日）</td>
+              <td>南東角住戸</td>
+            </tr>
+            <tr>
+              <td><strong>201</strong></td>
+              <td>2F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥70,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥72,000</strong></td>
+              <td class="num">¥2,761</td>
+              <td>約25〜35日（中央値28日）</td>
+              <td>2024.10成約実績</td>
+            </tr>
+            <tr>
+              <td><strong>202</strong></td>
+              <td>2F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥69,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥71,000</strong></td>
+              <td class="num">¥2,722</td>
+              <td>約30〜40日（中央値32日）</td>
+              <td>採光良好</td>
+            </tr>
+            <tr>
+              <td><strong>203</strong></td>
+              <td>2F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥70,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥72,000</strong></td>
+              <td class="num">¥2,761</td>
+              <td>約25〜35日（中央値30日）</td>
+              <td>医療従事者居住</td>
+            </tr>
+            <tr>
+              <td><strong>204</strong></td>
+              <td>2F</td>
+              <td>2LDK</td>
+              <td>45.09㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥120,000</td>
+              <td class="num">¥5,000</td>
+              <td class="num"><strong>¥125,000</strong></td>
+              <td class="num">¥2,772</td>
+              <td>約40〜55日（中央値45日）</td>
+              <td>新婚・DINKs需要、安定稼働</td>
+            </tr>
+            <tr>
+              <td><strong>301</strong></td>
+              <td>3F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥72,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥74,000</strong></td>
+              <td class="num">¥2,837</td>
+              <td>約20〜30日（中央値25日）</td>
+              <td><strong>2025.09最高値成約（賃料7.2万）</strong></td>
+            </tr>
+            <tr>
+              <td><strong>302</strong></td>
+              <td>3F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥71,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥73,000</strong></td>
+              <td class="num">¥2,799</td>
+              <td>約25〜35日（中央値28日）</td>
+              <td>最上階、眺望日当り良好</td>
+            </tr>
+            <tr>
+              <td><strong>303</strong></td>
+              <td>3F</td>
+              <td>1K</td>
+              <td>26.08㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥71,000</td>
+              <td class="num">¥2,000</td>
+              <td class="num"><strong>¥73,000</strong></td>
+              <td class="num">¥2,799</td>
+              <td>約25〜35日（中央値28日）</td>
+              <td>都心通勤者</td>
+            </tr>
+            <tr>
+              <td><strong>304</strong></td>
+              <td>3F</td>
+              <td>3LDK</td>
+              <td>68.20㎡</td>
+              <td><span class="badge badge-success">入居中</span></td>
+              <td class="num">¥145,000</td>
+              <td class="num">¥5,000</td>
+              <td class="num"><strong>¥150,000</strong></td>
+              <td class="num">¥2,199</td>
+              <td>約45〜60日（中央値50日）</td>
+              <td>最上階ファミリー、超長期入居見込</td>
+            </tr>
+            <tr>
+              <td><strong>駐車場</strong></td>
+              <td>敷地内</td>
+              <td>2区画</td>
+              <td>-</td>
+              <td><span class="badge badge-warning">売主使用</span></td>
+              <td class="num">¥22,000</td>
+              <td class="num">-</td>
+              <td class="num"><strong>¥22,000</strong></td>
+              <td class="num">-</td>
+              <td>-</td>
+              <td>売主様使用予定（@1.1万 有償契約必須）</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="5"><strong>合計 (満室基準)</strong></td>
+              <td class="num"><strong>¥984,000</strong></td>
+              <td class="num"><strong>¥31,000</strong></td>
+              <td class="num"><strong>¥1,015,000</strong></td>
+              <td class="num"><strong>平均 ¥2,653</strong></td>
+              <td><strong>平均 約34日</strong></td>
+              <td><strong>年額 1,218.0万円 (100%合致)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 4: HOME'S 掲載履歴タイムライン & 相場検証 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">📈 LIFULL HOME'S 12年掲載履歴 ＆ 賃料トレンド</div>
+        <span class="badge badge-primary">建物ID: b-38223678</span>
+      </div>
+      <p class="section-desc">
+        新築時（2013年）の6.3万〜6.5万円から、2024〜2025年には7.0万〜7.2万円へと<strong>10%超の賃料上昇</strong>が確認されました。専有26.08㎡の広さと都市ガス仕様が評価され、客付けスピードも新築時（60日）から直近（25〜30日）へと約半減しています。
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025年9月 〜 10月（直近最高値）</div>
+          <div class="timeline-content">
+            <strong>3階 1K (26.08㎡) : 賃料 7.2万円</strong>（共益費2,000円）<br>
+            掲載開始から約25日でスピード成約。周辺新築高騰に伴い準新築プレミアムが顕在化。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024年10月 〜 11月</div>
+          <div class="timeline-content">
+            <strong>2階 1K (26.08㎡) : 賃料 7.0万円</strong>（共益費2,000円）<br>
+            成約日数約30日。7.0万円の大台を突破し需要の強さを実証。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2022年4月 〜 2024年5月</div>
+          <div class="timeline-content">
+            <strong>2階 1K : 賃料 6.3万 〜 6.6万円</strong>（コロナ禍後の賃料回復局面）
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2013年9月 〜 11月（新築時募集）</div>
+          <div class="timeline-content">
+            <strong>2〜3階 1K (26.08㎡) : 賃料 6.3万 〜 6.5万円</strong>（DOM 約60日）
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: 積算価格 & 融資・指値シナリオ比較 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">💰 積算価格 (原価法) ＆ 4大シナリオ比較</div>
+        <span class="badge badge-warning">指値交渉の根拠</span>
+      </div>
+      
+      <h4 style="font-size:1rem; font-weight:700; margin-bottom:0.75rem;">【積算価格（再調達原価法）シナリオ比較】</h4>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>シナリオ区分</th>
+              <th style="text-align:right;">建物再調達単価</th>
+              <th style="text-align:right;">建物積算評価</th>
+              <th style="text-align:right;">土地積算評価 (路線価)</th>
+              <th style="text-align:right;">積算合計額</th>
+              <th style="text-align:right;">売出価格対比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1) 金融機関保守的基準</strong></td>
+              <td class="num">180,000円/㎡</td>
+              <td class="num">4,349.9万円</td>
+              <td class="num">6,765.0万円</td>
+              <td class="num"><strong>11,114.9万円</strong></td>
+              <td class="num"><strong>60.7%</strong></td>
+            </tr>
+            <tr>
+              <td><strong>2) 国税庁標準建築価額</strong></td>
+              <td class="num">240,000円/㎡</td>
+              <td class="num">5,799.9万円</td>
+              <td class="num">6,765.0万円</td>
+              <td class="num"><strong>12,564.9万円</strong></td>
+              <td class="num"><strong>68.7%</strong></td>
+            </tr>
+            <tr>
+              <td><strong>3) 売主側原価 / 新築時</strong></td>
+              <td class="num">350,000円/㎡</td>
+              <td class="num">8,458.1万円</td>
+              <td class="num">6,765.0万円</td>
+              <td class="num"><strong>15,223.1万円</strong></td>
+              <td class="num"><strong>83.2%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="font-size:1rem; font-weight:700; margin:1.5rem 0 0.75rem;">【4大融資・価格交渉シナリオ比較分析】</h4>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>シミュレーション項目</th>
+              <th style="text-align:right;">シナリオ1 (基準売出)<br>LTV 85%, 25年</th>
+              <th style="text-align:right; color:var(--danger);">シナリオ2 (残存年数)<br>LTV 80%, 21年</th>
+              <th style="text-align:right; background:#fef3c7; color:#92400e;">シナリオ3 (指値1.70億)<br>LTV 85%, 25年 ★推奨</th>
+              <th style="text-align:right; background:#dcfce7; color:#166534;">シナリオ4 (指値1.65億)<br>LTV 85%, 25年</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>物件売買価格 (税込)</strong></td>
+              <td class="num">1億8,300万円</td>
+              <td class="num">1億8,300万円</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">1億7,000万円 (-1,300万)</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">1億6,500万円 (-1,800万)</td>
+            </tr>
+            <tr>
+              <td><strong>融資借入額 (借入金)</strong></td>
+              <td class="num">1億5,555万円</td>
+              <td class="num">1億4,640万円</td>
+              <td class="num" style="background:#fef3c7;">1億4,450万円</td>
+              <td class="num" style="background:#dcfce7;">1億4,025万円</td>
+            </tr>
+            <tr>
+              <td><strong>年間返済額 (ADS)</strong></td>
+              <td class="num">818.7万円</td>
+              <td class="num" style="color:var(--danger); font-weight:700;">879.7万円</td>
+              <td class="num" style="background:#fef3c7;">760.6万円</td>
+              <td class="num" style="background:#dcfce7;">738.2万円</td>
+            </tr>
+            <tr>
+              <td><strong>純営業収益 (NOI)</strong></td>
+              <td class="num">913.2万円</td>
+              <td class="num">913.2万円</td>
+              <td class="num" style="background:#fef3c7;">913.2万円</td>
+              <td class="num" style="background:#dcfce7;">913.2万円</td>
+            </tr>
+            <tr>
+              <td><strong>実質 Cap Rate</strong></td>
+              <td class="num">4.99%</td>
+              <td class="num">4.99%</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">5.37%</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">5.53%</td>
+            </tr>
+            <tr>
+              <td><strong>満室時 税引前年間CF</strong></td>
+              <td class="num">94.5万円</td>
+              <td class="num" style="color:var(--danger); font-weight:700;">33.5万円</td>
+              <td class="num" style="background:#fef3c7; font-weight:700; color:#92400e;">152.6万円 (+58万)</td>
+              <td class="num" style="background:#dcfce7; font-weight:700; color:#166534;">175.0万円 (+80万)</td>
+            </tr>
+            <tr>
+              <td><strong>DSCR (返済余裕率)</strong></td>
+              <td class="num">1.12倍</td>
+              <td class="num" style="color:var(--danger); font-weight:700;">1.04倍 (警戒域)</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">1.20倍 (安全基準到達)</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">1.24倍 (優良)</td>
+            </tr>
+            <tr>
+              <td><strong>損益分岐稼働率</strong></td>
+              <td class="num">92.2%</td>
+              <td class="num" style="color:var(--danger); font-weight:700;">97.2% (破綻域)</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">87.5%</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">85.6%</td>
+            </tr>
+            <tr>
+              <td><strong>許容空室戸数</strong></td>
+              <td class="num">0.93戸</td>
+              <td class="num" style="color:var(--danger); font-weight:700;">0.33戸</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">1.50戸 (安全圏突入)</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">1.72戸</td>
+            </tr>
+            <tr>
+              <td><strong>初期必要自己資金</strong></td>
+              <td class="num">4,275.6万円</td>
+              <td class="num">5,172.3万円</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">3,976.6万円 (-299万)</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">3,861.6万円 (-414万)</td>
+            </tr>
+            <tr>
+              <td><strong>CCR (自己資本利回り)</strong></td>
+              <td class="num">2.21%</td>
+              <td class="num">0.65%</td>
+              <td class="num" style="background:#fef3c7; font-weight:700;">3.84%</td>
+              <td class="num" style="background:#dcfce7; font-weight:700;">4.53%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 6: 総合評価スコアカード & 最終判断 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">🏆 総合評価スコアカード ＆ 指値戦略</div>
+        <span class="badge badge-success">総合得点: 23.0 / 30点 (B+判定)</span>
+      </div>
+
+      <div class="scorecard-grid">
+        <div class="score-card">
+          <div class="score-head">
+            <span class="score-title">1. 立地・賃貸需要</span>
+            <span class="score-val">4.5 <span style="font-size:0.8rem;">/ 5</span></span>
+          </div>
+          <p class="score-desc">小田急相模原駅徒歩9分、東林間駅16分の複線利用。南区単身世帯率42.4%、相模原病院・北里大等の安定需要基盤。</p>
+        </div>
+        <div class="score-card">
+          <div class="score-head">
+            <span class="score-title">2. 競争優位性</span>
+            <span class="score-val">4.5 <span style="font-size:0.8rem;">/ 5</span></span>
+          </div>
+          <p class="score-desc">1K 26.08㎡のゆとり設計、都市ガス完備、南東6.0m公道接道（間口16.2m）による抜群の日当たりと開放感。</p>
+        </div>
+        <div class="score-card">
+          <div class="score-head">
+            <span class="score-title">3. 防災・安全性</span>
+            <span class="score-val">5.0 <span style="font-size:0.8rem;">/ 5</span></span>
+          </div>
+          <p class="score-desc">標高約86.9m相模原台地上の平坦整形地。洪水浸水想定区域・土砂災害警戒区域の完全対象外で最高水準。</p>
+        </div>
+        <div class="score-card">
+          <div class="score-head">
+            <span class="score-title">4. 収益性・CF</span>
+            <span class="score-val">2.5 <span style="font-size:0.8rem;">/ 5</span></span>
+          </div>
+          <p class="score-desc">売出価格のままではDSCR 1.12倍、損益分岐稼働率92.2%と安全余裕僅少。指値による改善が必須条件。</p>
+        </div>
+        <div class="score-card">
+          <div class="score-head">
+            <span class="score-title">5. 価格・積算性</span>
+            <span class="score-val">3.0 <span style="font-size:0.8rem;">/ 5</span></span>
+          </div>
+          <p class="score-desc">表面6.66%は見合っているが、保守的積算評価（1.11億円）対比で165%と乖離。サブリース承継時の手取低下懸念。</p>
+        </div>
+        <div class="score-card">
+          <div class="score-head">
+            <span class="score-title">6. 建物・適法性</span>
+            <span class="score-val">3.5 <span style="font-size:0.8rem;">/ 5</span></span>
+          </div>
+          <p class="score-desc">築13年でEV無の低コスト構造。外壁シーリング・屋根塗装の大規模修繕期（約500万円）到来および実測減歩（-3.38㎡）。</p>
+        </div>
+      </div>
+
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:0.5rem; padding:1.5rem; margin-top:1.5rem;">
+        <h4 style="color:#1e3a8a; font-size:1.1rem; font-weight:800; margin-bottom:0.75rem;">💡 最終投資判断および買付交渉戦略 (Final Action Plan)</h4>
+        <p style="font-size:0.95rem; line-height:1.7; color:#1e293b;">
+          本物件は<strong>「土地・建物の物理的スペック（99.8坪、南東6m公道、26㎡1K、都市ガス、標高86.9m台地）は極めて優秀なA級資産」</strong>である一方、<strong>「サブリース契約、J:COM/セコムリース、タイトなキャッシュフロー」</strong>というソフト面のリスクを抱えています。<br><br>
+          したがって売出満額（1億8,300万円）での買付は見送り、<strong>「① 築13年外壁大規模修繕費の予算化（約500万円引）」「② 公簿対比実測面積減歩分（-3.38㎡）」「③ サブリース無償解約手続きの負担」</strong>を正当な根拠として、<strong>【1億7,000万円（約1,300万円引 / 7.1%ネゴ）】</strong>を指値ターゲットとした買付証明書（買付レター）の提出を強く推奨いたします。<br><br>
+          1億7,000万円で妥結できた場合、<strong>実質Cap Rate 5.37%、DSCR 1.20倍、年間CF 152.6万円、許容空室1.5戸</strong>へと安全マージンが飛躍的に高まり、長期的に極めて手堅いポートフォリオの核となる優良資産へと昇華します。
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="font-weight:700; color:#fff;">レ・フレール (Le Frere) 1棟投資分析レポート</p>
+        <p>神奈川県相模原市南区東林間2丁目22-8 | 小田急相模原駅 徒歩9分</p>
+      </div>
+      <div style="text-align:right;">
+        <p>Published for: <strong>cocomadde</strong></p>
+        <p>Data Sources: 物件概要書(リライフマーケティング), 国土交通省 基準地価, <a href="https://www.homes.co.jp/archive/b-38223678/" target="_blank">LIFULL HOME'S アーカイブ</a></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
